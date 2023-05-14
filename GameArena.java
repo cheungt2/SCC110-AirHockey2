@@ -566,8 +566,21 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 
 	//Player2 getter functions
 	public boolean up2Pressed() {
-		return up2Pressed();
+		return up2;
 	}
+
+	public boolean down2Pressed() {
+		return down2;
+	}
+
+	public boolean left2Pressed() {
+		return left2;
+	}
+
+	public boolean right2Pressed() {
+		return right2;
+	}
+
 
 	public void keyReleased(KeyEvent e){
 		keyAction(e,false);

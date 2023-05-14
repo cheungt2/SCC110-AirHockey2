@@ -22,43 +22,54 @@ public class Driver {
         Line secondLine = new Line(1075, 300, 1075, 450, 10, "GREY", 2);
         newGameArena.addLine(secondLine);
 
-        Ball mallet1 = new Ball(325, 375, 60, "BLUE", 5);
-        newGameArena.addBall(mallet1);
-        Ball mallet2 = new Ball(875, 375, 60, "BLUE", 5);
-        newGameArena.addBall(mallet2);
+        // Ball mallet1 = new Ball(325, 375, 60, "BLUE", 5);
+        // newGameArena.addBall(mallet1);
+        // Ball mallet2 = new Ball(875, 375, 60, "BLUE", 5);
+        // newGameArena.addBall(mallet2);
         Ball puck = new Ball(600, 375, 25, "BLACK", 5);
         newGameArena.addBall(puck);
 
-        while (true) {
-            if (newGameArena.upPressed() && mallet2.getYPosition() >=145)
-                mallet2.move(0, -5);
+        Mallet mallet1 = new Mallet(325, 375, 60, "BLUE", 5, 5);
+        newGameArena.addBall(mallet1);
 
-            if (newGameArena.downPressed())
-                mallet2.move(0, 5);
-
-            if (newGameArena.leftPressed())
-                mallet2.move(-5, 0);
-
-            if (newGameArena.rightPressed())
-                mallet2.move(5, 0);
-            //
-            if (newGameArena.letterPressed('w'))
-                mallet1.move(0, -5);
-
-            if (newGameArena.letterPressed('s'))
-                mallet1.move(0, 5);
-
-            if (newGameArena.letterPressed('a'))
-                mallet1.move(-5, 0);
-
-            if (newGameArena.letterPressed('d'))
-                mallet1.move(5, 0);
-
+        while(true) {
             newGameArena.pause();
+            mallet1.setVelocity(newGameArena.upPressed(), newGameArena.downPressed(), newGameArena.leftPressed(), newGameArena.rightPressed());
+            mallet1.movement();
+            // System.out.println(newGameArena.upPressed() + " " + newGameArena.downPressed() + " " + newGameArena.leftPressed() + " " + newGameArena.rightMousePressed());
+        }
+
+        // while (true) {
+        //     if (newGameArena.upPressed() && mallet2.getYPosition() >=145)
+        //         mallet2.move(0, -5);
+
+        //     if (newGameArena.downPressed())
+        //         mallet2.move(0, 5);
+
+        //     if (newGameArena.leftPressed())
+        //         mallet2.move(-5, 0);
+
+        //     if (newGameArena.rightPressed())
+        //         mallet2.move(5, 0);
+        //     //
+        //     if (newGameArena.letterPressed('w'))
+        //         mallet1.move(0, -5);
+
+        //     if (newGameArena.letterPressed('s'))
+        //         mallet1.move(0, 5);
+
+        //     if (newGameArena.letterPressed('a'))
+        //         mallet1.move(-5, 0);
+
+        //     if (newGameArena.letterPressed('d'))
+        //         mallet1.move(5, 0);
+
+        //     newGameArena.pause();
 
             
 
-        }
+        // }
 
+        
     }
 }
