@@ -26,50 +26,27 @@ public class Driver {
         // newGameArena.addBall(mallet1);
         // Ball mallet2 = new Ball(875, 375, 60, "BLUE", 5);
         // newGameArena.addBall(mallet2);
-        Ball puck = new Ball(600, 375, 25, "BLACK", 5);
-        newGameArena.addBall(puck);
+        // Ball puck = new Ball(600, 375, 25, "BLACK", 5);
+        // newGameArena.addBall(puck);
 
         Mallet mallet1 = new Mallet(325, 375, 60, "BLUE", 5, 5);
         newGameArena.addBall(mallet1);
 
+        Mallet mallet2 = new Mallet(875, 375, 60, "BLUE", 5, 5);
+        newGameArena.addBall(mallet2);
+
+        Puck puck = new Puck(600, 375, 25, "BLACK", 5);
+        newGameArena.addBall(puck);
+
         while(true) {
             newGameArena.pause();
             mallet1.setVelocity(newGameArena.upPressed(), newGameArena.downPressed(), newGameArena.leftPressed(), newGameArena.rightPressed());
-            mallet1.movement();
+            mallet1.movement(120, 600, 145, 605);
+
+            mallet2.setVelocity(newGameArena.up2Pressed(), newGameArena.down2Pressed(), newGameArena.left2Pressed(), newGameArena.right2Pressed());
+            mallet2.movement(600, 1080, 145, 605);
             // System.out.println(newGameArena.upPressed() + " " + newGameArena.downPressed() + " " + newGameArena.leftPressed() + " " + newGameArena.rightMousePressed());
         }
-
-        // while (true) {
-        //     if (newGameArena.upPressed() && mallet2.getYPosition() >=145)
-        //         mallet2.move(0, -5);
-
-        //     if (newGameArena.downPressed())
-        //         mallet2.move(0, 5);
-
-        //     if (newGameArena.leftPressed())
-        //         mallet2.move(-5, 0);
-
-        //     if (newGameArena.rightPressed())
-        //         mallet2.move(5, 0);
-        //     //
-        //     if (newGameArena.letterPressed('w'))
-        //         mallet1.move(0, -5);
-
-        //     if (newGameArena.letterPressed('s'))
-        //         mallet1.move(0, 5);
-
-        //     if (newGameArena.letterPressed('a'))
-        //         mallet1.move(-5, 0);
-
-        //     if (newGameArena.letterPressed('d'))
-        //         mallet1.move(5, 0);
-
-        //     newGameArena.pause();
-
-            
-
-        // }
-
         
     }
 }

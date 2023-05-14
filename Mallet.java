@@ -1,5 +1,3 @@
-import java.util.function.BooleanSupplier;
-
 public class Mallet extends Ball {
 
     private double xVelocity, yVelocity, speed;
@@ -39,19 +37,19 @@ public class Mallet extends Ball {
         }
     }
 
-    public void movement() {
+    public void movement(double leftBoundary, double rightBoundary, double topBoundary, double bottomBoundary) {
         
         this.move(xVelocity, yVelocity);
-        if (this.getXPosition() - this.getSize()/2 <= 120)
-            this.setXPosition(120 + (this.getSize()/2));
+        if (this.getXPosition() - this.getSize()/2 <= leftBoundary)
+            this.setXPosition(leftBoundary + (this.getSize()/2));
 
-        if (this.getXPosition() + this.getSize()/2 >= 600)
-            this.setXPosition(600 - (this.getSize()/2));
+        if (this.getXPosition() + this.getSize()/2 >= rightBoundary)
+            this.setXPosition(rightBoundary - (this.getSize()/2));
 
-        if (this.getYPosition() - this.getSize()/2 <= 145)
-            this.setYPosition(145 + (this.getSize()/2));
+        if (this.getYPosition() - this.getSize()/2 <= topBoundary)
+            this.setYPosition(topBoundary + (this.getSize()/2));
 
-        if (this.getYPosition() + this.getSize()/2 >= 605)
-            this.setYPosition(605 - (this.getSize()/2));
+        if (this.getYPosition() + this.getSize()/2 >= bottomBoundary)
+            this.setYPosition(bottomBoundary - (this.getSize()/2));
     }
 }
