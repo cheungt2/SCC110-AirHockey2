@@ -28,10 +28,6 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 	private boolean down = false;
 	private boolean left = false;
 	private boolean right = false;
-	private boolean up2 = false;
-	private boolean down2 = false;
-	private boolean left2 = false;
-	private boolean right2 = false;
 	private boolean shift = false;
 	private boolean space = false;
 	private boolean esc = false;
@@ -49,6 +45,9 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 	private Map<RenderingHints.Key, Object> renderingHints;
 	private boolean rendered = false;
 	private Image backgroundImage = null;
+
+	private Ball player1;
+	private Ball player2;
 
 	/**
 	 * Create a view of a GameArena.
@@ -533,24 +532,17 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 	{
 		int code = e.getKeyCode();
 
-		if (code == KeyEvent.VK_UP)
-			up2 = yn;
-		if (code == KeyEvent.VK_DOWN)
-			down2 = yn;
-		if (code == KeyEvent.VK_LEFT)
-			left2 = yn;
-		if (code == KeyEvent.VK_RIGHT)
-			right2 = yn;
-
-		if (code == KeyEvent.VK_W)
-			up = yn;
-		if (code == KeyEvent.VK_S)
-			down = yn;
-		if (code == KeyEvent.VK_A)
-			left = yn;
-		if (code == KeyEvent.VK_D)
-			right = yn;
+		if (code == 119) {
 		
+			up = yn;
+		}
+		if (code == 97) {
+			down = yn;
+		}
+		if (code == KeyEvent.VK_LEFT)
+			left = yn;
+		if (code == KeyEvent.VK_RIGHT)
+			right = yn;
 		if (code == KeyEvent.VK_SPACE)
 			space = yn;
 		if (code == KeyEvent.VK_SHIFT)
@@ -562,11 +554,6 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 		//ASCII A-Z check
 		if (isAsciiAZ(code))
 			alphasPressed[code-asciiAZOffset] = yn;
-	}
-
-	//Player2 getter functions
-	public boolean up2Pressed() {
-		return up2Pressed();
 	}
 
 	public void keyReleased(KeyEvent e){
@@ -645,6 +632,7 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 	 */
 	public boolean upPressed()
 	{
+		
 		return up;
 	}
 
