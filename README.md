@@ -18,3 +18,4 @@ This repository contains the following files for the SCC.110 project "Air Hockey
 
 The folder **\docs** contains JavaDoc documentation. Click on *allclasses-index.html* to access the documentation.
 # SCC110-AirHockey
+# SCC110-AirHockey
