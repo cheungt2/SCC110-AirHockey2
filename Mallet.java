@@ -52,4 +52,12 @@ public class Mallet extends Ball {
         if (this.getYPosition() + this.getSize()/2 >= bottomBoundary)
             this.setYPosition(bottomBoundary - (this.getSize()/2));
     }
+
+    public double getXVelocity(){
+        return xVelocity;
+    }
+
+    public double getYVelocity(){
+        return yVelocity;
+    }
 }

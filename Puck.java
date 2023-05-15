@@ -1,9 +1,11 @@
 public class Puck extends Ball{
 
-    private double xVelocity, yVelocity;
+    private double xVelocity, yVelocity, friction;
 
-    public Puck(double x, double y, double diameter, String col, int layer) {
+    public Puck(double x, double y, double diameter, String col, int layer, double friction) {
         super(x, y, diameter, col, layer);
+
+        this.friction = friction;
         
     }
 
@@ -23,28 +25,32 @@ public class Puck extends Ball{
         this.yVelocity = YVelocity;
     }
 
+
+
     public void movement(double leftBoundary, double rightBoundary, double topBoundary, double bottomBoundary) {
     
         this.move(xVelocity, yVelocity);
+        xVelocity *= friction;
+        yVelocity *= friction;
         if (this.getXPosition() - this.getSize()/2 < leftBoundary) {
             this.setXPosition(leftBoundary + (this.getSize()/2));
             this.xVelocity *= -1;
         }
 
-        if (this.getXPosition() + this.getSize()/2 >= rightBoundary) {
+        if (this.getXPosition() + this.getSize()/2 > rightBoundary) {
             this.setXPosition(rightBoundary - (this.getSize()/2));
             this.xVelocity *= -1;
         }
 
-        if (this.getYPosition() - this.getSize()/2 <= topBoundary) {
+        if (this.getYPosition() - this.getSize()/2 < topBoundary) {
             this.setYPosition(topBoundary + (this.getSize()/2));
             this.yVelocity *= -1;
         }
 
-        if (this.getYPosition() + this.getSize()/2 >= bottomBoundary) {
+        if (this.getYPosition() + this.getSize()/2 > bottomBoundary) {
             this.setYPosition(bottomBoundary - (this.getSize()/2));
             this.yVelocity *= -1;
-            }   
+        }   
 
     }
     

@@ -22,21 +22,18 @@ public class Driver {
         Line secondLine = new Line(1075, 300, 1075, 450, 10, "GREY", 2);
         newGameArena.addLine(secondLine);
 
-        // Ball mallet1 = new Ball(325, 375, 60, "BLUE", 5);
-        // newGameArena.addBall(mallet1);
-        // Ball mallet2 = new Ball(875, 375, 60, "BLUE", 5);
-        // newGameArena.addBall(mallet2);
-        // Ball puck = new Ball(600, 375, 25, "BLACK", 5);
-        // newGameArena.addBall(puck);
 
-        Mallet mallet1 = new Mallet(325, 375, 60, "BLUE", 5, 5);
+        Mallet mallet1 = new Mallet(325, 375, 60, "BLUE", 5, 10);
         newGameArena.addBall(mallet1);
 
-        Mallet mallet2 = new Mallet(875, 375, 60, "BLUE", 5, 5);
+        Mallet mallet2 = new Mallet(875, 375, 60, "BLUE", 5, 10);
         newGameArena.addBall(mallet2);
 
-        Puck puck = new Puck(600, 375, 25, "BLACK", 5);
+        Puck puck = new Puck(600, 375, 25, "BLACK", 5, 0.993);
         newGameArena.addBall(puck);
+
+        int P1Score = 0;
+        int P2Score = 0;
 
         while(true) {
             newGameArena.pause();
@@ -46,7 +43,32 @@ public class Driver {
             mallet2.setVelocity(newGameArena.up2Pressed(), newGameArena.down2Pressed(), newGameArena.left2Pressed(), newGameArena.right2Pressed());
             mallet2.movement(600, 1080, 145, 605);
             // System.out.println(newGameArena.upPressed() + " " + newGameArena.downPressed() + " " + newGameArena.leftPressed() + " " + newGameArena.rightMousePressed());
+            
+            //collision with mallet1
+            double xDistance = mallet1.getXPosition() - puck.getXPosition();
+            double yDistance = mallet1.getYPosition()- puck.getYPosition();
+            if (Math.sqrt( Math.pow(xDistance, 2) + Math.pow(yDistance, 2)) - mallet1.getSize()/2 -puck.getSize()/2 <= 0) {
+                double[] collision1 = Collisions.deflect(mallet1.getXPosition(), mallet1.getYPosition(), mallet1.getXVelocity(), mallet1.getYVelocity(), puck.getXPosition(), puck.getYPosition(), puck.getXVelocity(), puck.getYVelocity());
+                puck.setXVelocity(collision1[2]);
+                puck.setYVelocity(collision1[3]);
+            }
+
+            //collision with mallet2
+            xDistance = mallet2.getXPosition() - puck.getXPosition();
+            yDistance = mallet2.getYPosition()- puck.getYPosition();
+            if (Math.sqrt( Math.pow(xDistance, 2) + Math.pow(yDistance, 2)) - mallet2.getSize()/2 -puck.getSize()/2 <= 0) {
+                double[] collision2 = Collisions.deflect(mallet2.getXPosition(), mallet2.getYPosition(), mallet2.getXVelocity(), mallet2.getYVelocity(), puck.getXPosition(), puck.getYPosition(), puck.getXVelocity(), puck.getYVelocity());
+                puck.setXVelocity(collision2[2]);
+                puck.setYVelocity(collision2[3]);
+            }
+
+            
+            puck.movement(120, 1080, 145, 605);
+        
+            if()
         }
         
+
+
     }
 }
