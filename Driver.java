@@ -31,7 +31,7 @@ public class Driver {
         Mallet mallet2 = new Mallet(875, 375, 60, "BLUE", 5, 10);
         newGameArena.addBall(mallet2);
 
-        Puck puck = new Puck(600, 375, 25, "BLACK", 5, 0.993);
+        Puck puck = new Puck(600, 375, 25, "GREEN", 5, 0.985);
         newGameArena.addBall(puck);
 
         int P1Score = 0;
@@ -52,7 +52,9 @@ public class Driver {
             mallet2.setVelocity(newGameArena.up2Pressed(), newGameArena.down2Pressed(), newGameArena.left2Pressed(), newGameArena.right2Pressed());
             mallet2.movement(600, 1080, 145, 605);
             // System.out.println(newGameArena.upPressed() + " " + newGameArena.downPressed() + " " + newGameArena.leftPressed() + " " + newGameArena.rightMousePressed());
-            
+                     
+            puck.movement(120, 1080, 145, 605, mallet1, mallet2);
+
             //collision with mallet1
             double xDistance = mallet1.getXPosition() - puck.getXPosition();
             double yDistance = mallet1.getYPosition()- puck.getYPosition();
@@ -65,16 +67,15 @@ public class Driver {
             //collision with mallet2
             xDistance = mallet2.getXPosition() - puck.getXPosition();
             yDistance = mallet2.getYPosition()- puck.getYPosition();
-            if (Math.sqrt( Math.pow(xDistance, 2) + Math.pow(yDistance, 2)) - mallet2.getSize()/2 -puck.getSize()/2 <= 0) {
+            if (Math.sqrt( Math.pow(xDistance, 2) + Math.pow(yDistance, 2)) - mallet2.getSize()/2 - puck.getSize()/2 <= 0) {
                 double[] collision2 = Collisions.deflect(mallet2.getXPosition(), mallet2.getYPosition(), mallet2.getXVelocity(), mallet2.getYVelocity(), puck.getXPosition(), puck.getYPosition(), puck.getXVelocity(), puck.getYVelocity());
                 puck.setXVelocity(collision2[2]);
                 puck.setYVelocity(collision2[3]);
             }
 
             
-            puck.movement(120, 1080, 145, 605);
         
-            if(puck.getXPosition() - puck.getSize()/2 <= 125 && (puck.getYPosition() >= 300) && (puck.getYPosition() <= 450)) {
+            if(puck.getXPosition() - puck.getSize()/2 <= 125 && (puck.getYPosition() >= 290) && (puck.getYPosition() <= 450)) {
                 P2Score += 1;
                 puck.setXPosition(600);
                 puck.setYPosition(375);
@@ -90,7 +91,7 @@ public class Driver {
 
             }
 
-            if(puck.getXPosition() + puck.getSize()/2 >= 1075 && (puck.getYPosition() >= 300) && (puck.getYPosition() <= 450)) {
+            if(puck.getXPosition() + puck.getSize()/2 >= 1075 && (puck.getYPosition() >= 290) && (puck.getYPosition() <= 450)) {
                 P1Score += 1;
                 puck.setXPosition(600);
                 puck.setYPosition(375);

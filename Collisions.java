@@ -37,7 +37,7 @@ public class Collisions{
      * Converts a vector into a unit vector.
      * Used by the deflect() method to calculate the resultant direction after a collision.
      */
-    private static double[] normalizeVector(double[] vec)
+    public static double[] normalizeVector(double[] vec)
     {
         double mag = 0.0;
         int dimensions = vec.length;

@@ -27,7 +27,7 @@ public class Puck extends Ball{
 
 
 
-    public void movement(double leftBoundary, double rightBoundary, double topBoundary, double bottomBoundary) {
+    public void movement(double leftBoundary, double rightBoundary, double topBoundary, double bottomBoundary, Mallet mallet1, Mallet mallet2) {
     
         this.move(xVelocity, yVelocity);
         xVelocity *= friction;
@@ -51,6 +51,43 @@ public class Puck extends Ball{
             this.setYPosition(bottomBoundary - (this.getSize()/2));
             this.yVelocity *= -1;
         }   
+
+
+        //when the puck overlaps with the mallet
+        double xDistance = this.getXPosition() - mallet1.getXPosition();
+        double yDistance = this.getYPosition() - mallet1.getYPosition();
+        if (Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2)) - mallet1.getSize()/2 - this.getSize()/2 <= 0) {
+            double[] norm = Collisions.normalizeVector(new double[]{xDistance, yDistance});
+            double totalRadius = mallet1.getSize()/2 + this.getSize()/2;
+
+            double totalVelocity = Math.sqrt(Math.pow(this.xVelocity,2) + Math.pow(this.yVelocity,2));
+            this.xVelocity = totalVelocity * norm[0];
+            this.yVelocity = totalVelocity * norm[1];
+
+            norm[0] *= totalRadius;
+            norm[1] *= totalRadius;
+            this.setXPosition(mallet1.getXPosition() + norm[0]);
+            this.setYPosition(mallet1.getYPosition() + norm[1]);
+        }
+
+        
+        xDistance = this.getXPosition() - mallet2.getXPosition();
+        yDistance = this.getYPosition() - mallet2.getYPosition();
+        if (Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2)) - mallet2.getSize()/2 - this.getSize()/2 <= 0) {
+            double[] norm = Collisions.normalizeVector(new double[]{xDistance, yDistance});
+            double totalRadius = mallet2.getSize()/2 + this.getSize()/2;
+
+            double totalVelocity = Math.sqrt(Math.pow(this.xVelocity,2) + Math.pow(this.yVelocity,2));
+            this.xVelocity = totalVelocity * norm[0];
+            this.yVelocity = totalVelocity * norm[1];
+
+            norm[0] *= totalRadius;
+            norm[1] *= totalRadius;
+            this.setXPosition(mallet2.getXPosition() + norm[0]);
+            this.setYPosition(mallet2.getYPosition() + norm[1]);
+        }
+
+
 
     }
     
