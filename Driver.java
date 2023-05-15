@@ -17,8 +17,10 @@ public class Driver {
         Ball whiteBall = new Ball(600, 375, 90, "WHITE", 5);
         newGameArena.addBall(whiteBall);
 
+        //Left goalPost
         Line firstLine = new Line(125, 300, 125, 450, 10, "GREY", 2);
         newGameArena.addLine(firstLine);
+        //Right goalPost
         Line secondLine = new Line(1075, 300, 1075, 450, 10, "GREY", 2);
         newGameArena.addLine(secondLine);
 
@@ -34,6 +36,13 @@ public class Driver {
 
         int P1Score = 0;
         int P2Score = 0;
+
+        Text p1Text = new Text("0", 50, 50, 375, "WHITE");
+        Text p2Text = new Text("0", 50, 1150, 375, "WHITE");
+        newGameArena.addText(p1Text);
+        newGameArena.addText(p2Text);
+
+
 
         while(true) {
             newGameArena.pause();
@@ -65,9 +74,40 @@ public class Driver {
             
             puck.movement(120, 1080, 145, 605);
         
-            if()
+            if(puck.getXPosition() - puck.getSize()/2 <= 125 && (puck.getYPosition() >= 300) && (puck.getYPosition() <= 450)) {
+                P2Score += 1;
+                puck.setXPosition(600);
+                puck.setYPosition(375);
+                puck.setXVelocity(0);
+                puck.setYVelocity(0);
+
+                mallet1.setXPosition(325);
+                mallet1.setYPosition(375);
+                mallet2.setXPosition(875);
+                mallet2.setYPosition(375);
+
+                p2Text.setText("" + P2Score);
+
+            }
+
+            if(puck.getXPosition() + puck.getSize()/2 >= 1075 && (puck.getYPosition() >= 300) && (puck.getYPosition() <= 450)) {
+                P1Score += 1;
+                puck.setXPosition(600);
+                puck.setYPosition(375);
+                puck.setXVelocity(0);
+                puck.setYVelocity(0);
+
+                mallet1.setXPosition(325);
+                mallet1.setYPosition(375);
+                mallet2.setXPosition(875);
+                mallet2.setYPosition(375);
+
+                p1Text.setText("" + P1Score);
+
+            }
+
         }
-        
+
 
 
     }
